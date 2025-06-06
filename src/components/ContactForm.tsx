@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -19,6 +19,16 @@ const ContactForm = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [destinatario, setDestinatario] = useState('');
+  const [assunto, setAssunto] = useState('');
+
+  useEffect(() => {
+    const root = document.getElementById('root');
+    if (root) {
+      setDestinatario(root.getAttribute('data-destinatario') || '');
+      setAssunto(root.getAttribute('data-assunto') || '');
+    }
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -32,35 +42,54 @@ const ContactForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const finalFormData = { ...formData };
+    const form = e.target as HTMLFormElement;
+    const formDataToSend = new FormData(form);
 
-    // Simulate form submission
-    setTimeout(() => {
-      console.log("Dados enviados:", finalFormData); // Aqui você envia os dados para a API
+    // Envia dados para o backend
+    fetch('https://webdesign.freshlab.com.br/lp-mail/lp-mail.php', {
+      method: 'POST',
+      body: formDataToSend
+    })
+      .then(res => {
+        if (!res.ok) throw new Error('Erro ao enviar');
+        return res.text();
+      })
+      .then(() => {
+        toast({
+          title: "Solicitação enviada com sucesso!",
+          description: "Em breve nossa equipe entrará em contato pelo WhatsApp.",
+          variant: "default",
+        });
 
-      setIsSubmitting(false);
-      toast({
-        title: "Solicitação enviada com sucesso!",
-        description: "Em breve nossa equipe entrará em contato pelo WhatsApp.",
-        variant: "default",
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          clinicName: '',
+          system: ''
+        });
+      })
+      .catch(() => {
+        toast({
+          title: "Erro ao enviar formulário",
+          description: "Tente novamente mais tarde.",
+          variant: "destructive"
+        });
+      })
+      .finally(() => {
+        setIsSubmitting(false);
       });
-
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        clinicName: '',
-        system: ''
-      });
-    }, 1500);
   };
 
   return (
     <section id="contato" className="py-16 bg-talkaio-extraLight">
       <div className="container mx-auto px-4">
         <div className="max-w-lg mx-auto bg-white rounded-xl shadow-lg p-8 border border-gray-100">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} method="POST" action="https://webdesign.freshlab.com.br/lp-mail/lp-mail.php">
+            {/* Hidden inputs dinâmicos */}
+            <input type="hidden" name="destinatario" value={destinatario} />
+            <input type="hidden" name="assunto" value={assunto} />
+
             <div className="space-y-6">
               <div>
                 <Label htmlFor="name">Nome</Label>
@@ -111,9 +140,7 @@ const ContactForm = () => {
                 >
                   <option value="" disabled>Selecione um sistema</option>
                   {systemsList.map(system => (
-                    <option key={system} value={system}>
-                      {system}
-                    </option>
+                    <option key={system} value={system}>{system}</option>
                   ))}
                 </select>
               </div>
@@ -130,8 +157,8 @@ const ContactForm = () => {
                 />
               </div>
 
-              <Button 
-                type="submit" 
+              <Button
+                type="submit"
                 className="w-full bg-talkaio-blue hover:bg-talkaio-darkBlue font-semibold py-6 text-lg"
                 disabled={isSubmitting}
               >

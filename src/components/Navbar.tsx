@@ -7,11 +7,11 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="w-full py-4 bg-white sticky top-0 z-50 shadow-sm">
+    <div className="w-full py-4 bg-white sticky top-0 z-50 shadow-sm">
       <div className="container px-4 sm:px-6 lg:px-8 mx-auto flex justify-between items-center">
         <div className="flex items-center">
           <img 
-            src="/lovable-uploads/6ce28c17-e829-4bc5-b8bf-e306476ab445.png" 
+            src="https://cdn.jsdelivr.net/gh/freshlab-web/talkaio-lp-medico@main/dist/lovable-uploads/fc743b2e-b47e-455c-a025-daf0e32c8796.png" 
             alt="Talkaio Logo" 
             className="h-8 md:h-10" 
           />
@@ -85,7 +85,7 @@ const Navbar = () => {
           </nav>
         </div>
       )}
-    </header>
+    </div>
   );
 };
 
