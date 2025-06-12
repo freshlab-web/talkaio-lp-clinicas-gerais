@@ -3,11 +3,11 @@ import { useKeenSlider } from "keen-slider/react"
 import { useEffect } from "react"
 
 const logos = [
-  { name: "iClinic", url: "/talkaio-lp-clinicas-gerais/lovable-uploads/iclinic.png" },
-  { name: "Doctoralia", url: "/talkaio-lp-clinicas-gerais/lovable-uploads/doctoralia.png" },
-  { name: "Feegow", url: "/talkaio-lp-clinicas-gerais/lovable-uploads/feegow.png" },
-  { name: "Linx Saúde", url: "/talkaio-lp-clinicas-gerais/lovable-uploads/linx-saude.png" },
-  { name: "ProDoctor", url: "/talkaio-lp-clinicas-gerais/lovable-uploads/prodoctor.png" },
+  { name: "iClinic", url: "../lovable-uploads/iclinic.png" },
+  { name: "Doctoralia", url: "../lovable-uploads/doctoralia.png" },
+  { name: "Feegow", url: "../lovable-uploads/feegow.png" },
+  { name: "Linx Saúde", url: "../lovable-uploads/linx-saude.png" },
+  { name: "ProDoctor", url: "../lovable-uploads/prodoctor.png" },
 ]
 
 export default function IntegrationCarousel() {
