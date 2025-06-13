@@ -10,7 +10,7 @@ const HeroSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-talkaio-dark leading-tight">
-              Transforme o atendimento da sua clínica com WhatsApp automatizado.
+              Transforme o atendimento da sua clínica com WhatsApp automatizado
             </h1>
             <p className="mt-6 text-lg text-gray-700">
               Sua equipe está sobrecarregada? O WhatsApp toca o dia todo? Pacientes desmarcam em cima da hora?
