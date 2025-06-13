@@ -1,10 +1,22 @@
-
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  // Função para scroll suave e evitar navegação incorreta
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const href = e.currentTarget.getAttribute("href");
+    if (href?.startsWith("#")) {
+      e.preventDefault();
+      const el = document.querySelector(href);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+        window.history.replaceState(null, "", href);
+      }
+    }
+  };
 
   return (
     <div className="w-full py-4 bg-white sticky top-0 z-50 shadow-sm">
@@ -19,22 +31,22 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          <a href="#beneficios" className="text-talkaio-dark hover:text-talkaio-blue transition-colors font-medium">
+          <a href="#beneficios" onClick={handleAnchorClick} className="text-talkaio-dark hover:text-talkaio-blue transition-colors font-medium">
             Benefícios
           </a>
-          <a href="#recursos" className="text-talkaio-dark hover:text-talkaio-blue transition-colors font-medium">
+          <a href="#recursos" onClick={handleAnchorClick} className="text-talkaio-dark hover:text-talkaio-blue transition-colors font-medium">
             Recursos
           </a>
-          <a href="#diferenciais" className="text-talkaio-dark hover:text-talkaio-blue transition-colors font-medium">
+          <a href="#diferenciais" onClick={handleAnchorClick} className="text-talkaio-dark hover:text-talkaio-blue transition-colors font-medium">
             Diferenciais
           </a>
-          <a href="#faq" className="text-talkaio-dark hover:text-talkaio-blue transition-colors font-medium">
+          <a href="#faq" onClick={handleAnchorClick} className="text-talkaio-dark hover:text-talkaio-blue transition-colors font-medium">
             FAQ
           </a>
-          <a href="#contato">
-          <Button className="bg-talkaio-blue hover:bg-talkaio-darkBlue text-white transition-colors">
-            Fale Conosco
-          </Button>
+          <a href="#contato" onClick={handleAnchorClick}>
+            <Button className="bg-talkaio-blue hover:bg-talkaio-darkBlue text-white transition-colors">
+              Fale Conosco
+            </Button>
           </a>
         </nav>
 
@@ -53,35 +65,55 @@ const Navbar = () => {
           <nav className="flex flex-col gap-4">
             <a 
               href="#beneficios" 
+              onClick={(e) => {
+                handleAnchorClick(e);
+                setIsOpen(false);
+              }}
               className="text-talkaio-dark hover:text-talkaio-blue transition-colors font-medium py-2"
-              onClick={() => setIsOpen(false)}
             >
               Benefícios
             </a>
             <a 
               href="#recursos" 
+              onClick={(e) => {
+                handleAnchorClick(e);
+                setIsOpen(false);
+              }}
               className="text-talkaio-dark hover:text-talkaio-blue transition-colors font-medium py-2"
-              onClick={() => setIsOpen(false)}
             >
               Recursos
             </a>
             <a 
               href="#diferenciais" 
+              onClick={(e) => {
+                handleAnchorClick(e);
+                setIsOpen(false);
+              }}
               className="text-talkaio-dark hover:text-talkaio-blue transition-colors font-medium py-2"
-              onClick={() => setIsOpen(false)}
             >
               Diferenciais
             </a>
             <a 
               href="#faq" 
+              onClick={(e) => {
+                handleAnchorClick(e);
+                setIsOpen(false);
+              }}
               className="text-talkaio-dark hover:text-talkaio-blue transition-colors font-medium py-2"
-              onClick={() => setIsOpen(false)}
             >
               FAQ
             </a>
-            <Button className="bg-talkaio-blue hover:bg-talkaio-darkBlue text-white transition-colors w-full mt-2">
-              Fale Conosco
-            </Button>
+            <a 
+              href="#contato" 
+              onClick={(e) => {
+                handleAnchorClick(e);
+                setIsOpen(false);
+              }}
+            >
+              <Button className="bg-talkaio-blue hover:bg-talkaio-darkBlue text-white transition-colors w-full mt-2">
+                Fale Conosco
+              </Button>
+            </a>
           </nav>
         </div>
       )}
