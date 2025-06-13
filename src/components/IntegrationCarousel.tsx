@@ -3,11 +3,11 @@ import { useKeenSlider } from "keen-slider/react"
 import { useEffect } from "react"
 
 const logos = [
-  { name: "iClinic", url: "https://cdn.jsdelivr.net/gh/freshlab-web/talkaio-lp-clinicas-gerais@main/dist/lovable-uploads/lovable-uploads/iclinic.png" },
-  { name: "Doctoralia", url: "https://cdn.jsdelivr.net/gh/freshlab-web/talkaio-lp-clinicas-gerais@main/dist/lovable-uploads/lovable-uploads/doctoralia.png" },
-  { name: "Feegow", url: "https://cdn.jsdelivr.net/gh/freshlab-web/talkaio-lp-clinicas-gerais@main/dist/lovable-uploads/lovable-uploads/feegow.png" },
-  { name: "Linx Saúde", url: "https://cdn.jsdelivr.net/gh/freshlab-web/talkaio-lp-clinicas-gerais@main/dist/lovable-uploads/lovable-uploads/linx-saude.png" },
-  { name: "ProDoctor", url: "https://cdn.jsdelivr.net/gh/freshlab-web/talkaio-lp-clinicas-gerais@main/dist/lovable-uploads/lovable-uploads/prodoctor.png" },
+  { name: "iClinic", url: "https://cdn.jsdelivr.net/gh/freshlab-web/talkaio-lp-clinicas-gerais@main/dist/lovable-uploads/iclinic.png" },
+  { name: "Doctoralia", url: "https://cdn.jsdelivr.net/gh/freshlab-web/talkaio-lp-clinicas-gerais@main/dist/lovable-uploads/doctoralia.png" },
+  { name: "Feegow", url: "https://cdn.jsdelivr.net/gh/freshlab-web/talkaio-lp-clinicas-gerais@main/dist/lovable-uploads/feegow.png" },
+  { name: "Linx Saúde", url: "https://cdn.jsdelivr.net/gh/freshlab-web/talkaio-lp-clinicas-gerais@main/dist/lovable-uploads/linx-saude.png" },
+  { name: "ProDoctor", url: "https://cdn.jsdelivr.net/gh/freshlab-web/talkaio-lp-clinicas-gerais@main/dist/lovable-uploads/prodoctor.png" },
 ]
 
 export default function IntegrationCarousel() {
